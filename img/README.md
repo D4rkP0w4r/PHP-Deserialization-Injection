@@ -176,7 +176,7 @@ echo $serializedObject;
 * The script when i run 
 ![image](https://user-images.githubusercontent.com/79050415/152373825-40d495e7-8d98-40c5-a1a0-1a4ce1041f1d.png)
 ```c
-`O:10:"access_log":1:{s:8:"log_file";s:7:"../flag";}`
+O:10:"access_log":1:{s:8:"log_file";s:7:"../flag";}
 ```
 * After that i encode payload above to base64 
 ```c
